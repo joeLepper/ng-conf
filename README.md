@@ -58,3 +58,54 @@ Authorization and conditional features
 
 Conditional Features (Feature Flags)
 ------------------------------------
+* conditional features are taken care of by the server, add a script tag for each conditional feature
+* Limiting access to controllers is handled by injecting the active user into a conditional controller and letting the controller decide if the user has access
+* remove conditional HTML by custom omit and keep using the response interceptor to strip the HTML out of any response from the server
+* This method won't work with $templateCache - need to ask this guy about that
+* Doubleclick uses $templateCache in the client instead of bundling everything into it on the server on the initial load
+
+Code Organization Patterns
+--------------------------
+* avoid overly-large controllers
+* prevent copypaste
+* single responsibility
+* easy to locate
+
+* inheritance: create a base controller that other controllers can inherit from, can become overly complex
+* can do inheritance via Angular by `$injector.invoke()`
+* mixins: `angular.extend()` use sparingly to add a specific behavior to a controller, very tightly coupled to their controllers, possible naming collisions
+* composition with JS object: use with simple objects and when performance is critical, but cannot use DI with this method
+```
+var sorter = function(){//methods}
+
+function myCtrl($scope){
+  $scope.sorter = new sorter()
+}
+```
+__preferred methods__
+* services: common functionality that needs to be shared, fully DI and testable
+* composition with "helper controllers": like a regular object, but invoked with `$controller`: use when need to access other Angular-provided objects, allows for __multiple instances__
+
+```
+function dogWalker(){//methods}
+function myCtrl($controller, $scope){
+  $scope.sorter = $controller(dogWalker);
+}
+```
+* to share state between page and the helper controllers, you can create a child scope via `$scope.new()`
+* prefer composition over inheritance
+* minimize mixins
+* frameworks help, but don't forget OO principles
+
+Going beyond Built-in Services
+------------------------------
+* use a provider in your config block to do REST-api-specific setup for your app
+* we can work with logical entities instead of raw server data
+* we can use promises to automatically wrap response data in instantiated objects
+* we can use `$injector.instantiate` so that the models are able to be injected
+Very useful if the response data is in a stupid format and the server is outside of your control
+* we can add useful methods on our model objects (like `afterLoad` or `beforeSave`) that can be automatically invoked
+* lets you marshal and massage your data outside of your controllers _so you can keep your controllers skinny_
+* can simplify our tests as URLs get longer and uglier by wrapping httpBackend
+* this method helps by being more readable and less boiler-platey, as well as being able to granularly assert expectations about AJAX
+* Angular provides you the basics to build your own tools, identify where you need new tooling and don't forget about test tooling
