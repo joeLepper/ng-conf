@@ -57,7 +57,7 @@ Google Doubleclick team
 * make the active user model an injectable service
 
 
-# Conditional Features (Feature Flags)
+## Conditional Features (Feature Flags)
 
 * conditional features are taken care of by the server, add a script tag for each conditional feature
 * Limiting access to controllers is handled by injecting the active user into a conditional controller and letting the controller decide if the user has access
@@ -161,3 +161,14 @@ $Q.all([a, b, c])
 ## Deep Dive Into Directives
 
 * use a custom prefix to avoid clobbering
+* where to use directives: to make custom components (to be replaced by custom elements in the browsers)
+* this guy suggests wrapping up jQuery widgets in elements - but I hate that idea
+* directives are the only place you should manipulate the DOM, if you feel like testing
+* if your directives are in custom modules, it's better for testing
+* link is where we'll do all of our mouse / touch / user interaction behavior definitions, it is called once for each instance of the directive on the page
+* directives can be behavioral, or widgets
+* isolated scopes allow for reuse, clean interfaces, and avoids guilty knowledge about the directives environmnet, plus makes it testable
+* @ allows the parent scope to use double curlies when it's handing a string in. Those curlies will be interpolated before the string is handed off
+* the attrs object of the directive definition object allows us to pass attrs, interpolated in the parent environment which can be interpolated by the directive using `$eval`
+* compile and link are very rarely used, but could be used for some sort of lazy-load for perf improvement
+* lazy-loading directive saved a lot of pain from page load time - adds DOM and then destroys itself
