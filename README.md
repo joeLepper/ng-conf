@@ -46,7 +46,7 @@ Google Doubleclick team
 * 20+ JS engineers
 * 130 controllers, 137 directives, 59 services (interesting that there's more idrectives than controllers!)
 Authorization and conditional features
---------------------------------------
+======================================
 * return Active User profile for every active user. Return an empty object for non-authed users
 * Used to do everything on the client for auth
 * This worked when the app was small, but wasted a lot of time as it grew and bootstrapping time increased (you're bootstrapping an app for a user that's not authed, then kicking them out)
@@ -57,7 +57,7 @@ Authorization and conditional features
 
 
 Conditional Features (Feature Flags)
-------------------------------------
+====================================
 * conditional features are taken care of by the server, add a script tag for each conditional feature
 * Limiting access to controllers is handled by injecting the active user into a conditional controller and letting the controller decide if the user has access
 * remove conditional HTML by custom omit and keep using the response interceptor to strip the HTML out of any response from the server
@@ -65,7 +65,7 @@ Conditional Features (Feature Flags)
 * Doubleclick uses $templateCache in the client instead of bundling everything into it on the server on the initial load
 
 Code Organization Patterns
---------------------------
+==========================
 * avoid overly-large controllers
 * prevent copypaste
 * single responsibility
@@ -98,7 +98,7 @@ function myCtrl($controller, $scope){
 * frameworks help, but don't forget OO principles
 
 Going beyond Built-in Services
-------------------------------
+==============================
 * use a provider in your config block to do REST-api-specific setup for your app
 * we can work with logical entities instead of raw server data
 * we can use promises to automatically wrap response data in instantiated objects
@@ -147,7 +147,7 @@ $Q.all([a, b, c])
 * using promises we can use interfaces that are API driven
 
 How to start:
--------------
+=============
 * consume promises returned by built-in services like `$http` et al
 * use `$resource` which now returns a resource object that _has_ a promise
 * `$route:resolve` __THE ROUTE WON'T CHANGE UNTIL YOU HAVE EVERYTHING YOU NEED__
