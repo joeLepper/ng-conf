@@ -109,3 +109,50 @@ Very useful if the response data is in a stupid format and the server is outside
 * can simplify our tests as URLs get longer and uglier by wrapping httpBackend
 * this method helps by being more readable and less boiler-platey, as well as being able to granularly assert expectations about AJAX
 * Angular provides you the basics to build your own tools, identify where you need new tooling and don't forget about test tooling
+
+Going Postal with Promises
+==========================
+(Christian Lilley)[christianlilley.com]
+
+* Promises are about uncertainty caused by async
+* Helps us to avoid callback Hell / pyramid of doom
+* Allows for error handling and simpler chaining of async operations
+* Promises are a design patter that comes to us from functinoal programming
+* allows us to reason about async programs more efficiently
+* Allows us to go from imperative asyc to declarative async
+```
+step1.
+  then(step2).
+  then(step3).
+  then(step4)
+```
+
+OR, more awesomely:
+```
+var a = step1
+var b = a.then(step2)
+var c = b.then(step3)
+```
+
+OR
+```
+$Q.all([a, b, c])
+  .then(step4)
+```
+
+* at its root, a promise is a mailbox - a standard way to stash the output from an operation
+* If a promise is a mailbox, then deferred is the postman
+* the deferred is the only one that is allowed to assign new mailboxes, put packages in the mailbox, or alert you to the mail's arrival
+* promises aren't _just_ for async requests
+* using promises we can use interfaces that are API driven
+
+How to start:
+-------------
+* consume promises returned by built-in services like `$http` et al
+* use `$resource` which now returns a resource object that _has_ a promise
+* `$route:resolve` __THE ROUTE WON'T CHANGE UNTIL YOU HAVE EVERYTHING YOU NEED__
+* Automatic unwrapping in views is gone in 1.2, but was sort of cool (use resolve or manual unwrapping)
+* start creating your own promises with `$Q`
+* third-party libraries use promises, check them out
+* wrap a promise in an Angular service to create __lazy promises__
+* http interceptors are awesome and let you grab every HTTP as it goes out or comes into the browser, can be used to intercept and create promises
