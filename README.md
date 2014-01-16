@@ -1,5 +1,5 @@
-Keynote
-=======
+# Keynote
+
 Misko Hevery & Brad Green
 
 * Started in 2009
@@ -30,23 +30,24 @@ ES6: Classes and modules, but no annotations
 * Debuggability: Zone.js allows for longer stack traces and ignores the $digest / $apply cycles
 * diary.js: console and server logging, the sorts of tooling that we'd like to implement
 
-Angular in 20ish Minutes
-========================
+# Angular in 20ish Minutes
+
 Dan Wahlin @DanWahlin
 
 * Going to touch on the key pieces of an app
 * Laregely remedial
 
-BUilding Massive AngularJS Apps
-===============================
+# Building Massive AngularJS Apps
+
 Google Doubleclick team
 
 * Doubleclick Campaign Manager is our example
 * One of the oldest (Nov. 2010) and largest Angular apps
 * 20+ JS engineers
 * 130 controllers, 137 directives, 59 services (interesting that there's more idrectives than controllers!)
-Authorization and conditional features
-======================================
+
+## Authorization and conditional features
+
 * return Active User profile for every active user. Return an empty object for non-authed users
 * Used to do everything on the client for auth
 * This worked when the app was small, but wasted a lot of time as it grew and bootstrapping time increased (you're bootstrapping an app for a user that's not authed, then kicking them out)
@@ -56,16 +57,16 @@ Authorization and conditional features
 * make the active user model an injectable service
 
 
-Conditional Features (Feature Flags)
-====================================
+# Conditional Features (Feature Flags)
+
 * conditional features are taken care of by the server, add a script tag for each conditional feature
 * Limiting access to controllers is handled by injecting the active user into a conditional controller and letting the controller decide if the user has access
 * remove conditional HTML by custom omit and keep using the response interceptor to strip the HTML out of any response from the server
 * This method won't work with $templateCache - need to ask this guy about that
 * Doubleclick uses $templateCache in the client instead of bundling everything into it on the server on the initial load
 
-Code Organization Patterns
-==========================
+## Code Organization Patterns
+
 * avoid overly-large controllers
 * prevent copypaste
 * single responsibility
@@ -97,8 +98,8 @@ function myCtrl($controller, $scope){
 * minimize mixins
 * frameworks help, but don't forget OO principles
 
-Going beyond Built-in Services
-==============================
+## Going beyond Built-in Services
+
 * use a provider in your config block to do REST-api-specific setup for your app
 * we can work with logical entities instead of raw server data
 * we can use promises to automatically wrap response data in instantiated objects
@@ -110,8 +111,8 @@ Very useful if the response data is in a stupid format and the server is outside
 * this method helps by being more readable and less boiler-platey, as well as being able to granularly assert expectations about AJAX
 * Angular provides you the basics to build your own tools, identify where you need new tooling and don't forget about test tooling
 
-Going Postal with Promises
-==========================
+# Going Postal with Promises
+
 (Christian Lilley)[christianlilley.com]
 
 * Promises are about uncertainty caused by async
@@ -146,8 +147,8 @@ $Q.all([a, b, c])
 * promises aren't _just_ for async requests
 * using promises we can use interfaces that are API driven
 
-How to start:
-=============
+## How to start:
+
 * consume promises returned by built-in services like `$http` et al
 * use `$resource` which now returns a resource object that _has_ a promise
 * `$route:resolve` __THE ROUTE WON'T CHANGE UNTIL YOU HAVE EVERYTHING YOU NEED__
@@ -156,3 +157,7 @@ How to start:
 * third-party libraries use promises, check them out
 * wrap a promise in an Angular service to create __lazy promises__
 * http interceptors are awesome and let you grab every HTTP as it goes out or comes into the browser, can be used to intercept and create promises
+
+## Deep Dive Into Directives
+
+* use a custom prefix to avoid clobbering
