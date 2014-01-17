@@ -44,7 +44,7 @@ Google Doubleclick team
 * Doubleclick Campaign Manager is our example
 * One of the oldest (Nov. 2010) and largest Angular apps
 * 20+ JS engineers
-* 130 controllers, 137 directives, 59 services (interesting that there's more idrectives than controllers!)
+* 130 controllers, 137 directives, 59 services (interesting that there's more directives than controllers!)
 
 ## Authorization and conditional features
 
@@ -344,7 +344,7 @@ Daniel Zen @zendigital
 * handle CSS transitions that are GPU assisted
 * __AUTOMATE YOUR WORKFLOW__
 
-# Angular onthe Arduino
+# Angular on the Arduino
 Ari Lerner
 
 * tinyhttpserver lets us build a web server on the Arduino, easier than writing one in C
@@ -365,3 +365,31 @@ Ari Lerner
 * Just need to iterate over every character in a string, where each index in the string is a different argument
 * using D3 for the interface
 * author of ng-book, D3 on AngularJS (co-author), Riding Rails with AngularJS
+
+# e2e Testing with Protractor
+
+* e2e framework for Angular
+* replaces Angular Scenario Runner
+* e2e testing is about gaining confidence that your code does what you think it does
+* unit tests can't do this on its own
+* WebDriver (selenium) is working on becoming a web standard
+* A testProcess (node service) talks to a WebDriver (letting you use native events, which talks to your app
+* Being specific to angular it makes the "black box" a little bit more "grey"
+* But e2e tests are hard, right?
+
+## Protractor makes e2e testing suck less
+* Protractor borrows ideas from karma to make things very similar (config file, test scaffolding with jasmine for async)
+* global variables like `browser` for interacting with the page URL ( a wrapper around WebDriver) and `element` for interacting with elements on the stage by things like binding
+* keeping tests up to date is made simpler by using the Page Object pattern (look for libraries surrounding this)
+* page objects separate out the code that has to do with finding things on your page from the test logic (just require the object in your tests)
+* slowness and flakiness is dealt with by saying `browser.waitForAngular()`
+* since Angular knows about HTTP requests and rendering and timeouts, Protractor can plug into that and be smarter about when it can check assertions
+* Protractor also offers better debugging via stack traces and error messages as well as the element explorer (area of focus going forward)
+* The element explorer provides a CLI for interacting with a live WebDriver
+* we can turn off animations to speed up tests
+* Protractor doesn't yet handle logging in and cleaning up yet. This is still being figured out by the community
+
+## Up Next
+* formalize the contract between Angular and Protractor
+* Migration away from Scenario Runner
+* Improve the elementExplorer to better make e2e testing pleasurable
