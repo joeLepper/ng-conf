@@ -423,3 +423,20 @@ Ari Lerner
 * viewChangeListeners
 * $dirty
 * $pristine
+
+For more, check out Dean Sofer, who curates Angular-UI
+
+# PhotoHunt
+Silvano Luciani
+
+* was working on Google+ sign-in with many requirements
+* Needed an application to showcase what they were building (internally)
+* An app to demonstrate to external users how to use the features
+* chose Angular to involve all Googlers in testing the platform
+* needed speed of execution
+* had 3 clients, web, android, and iOS
+* had a backend implemented in Java and AppEngine
+* Built PhotoHunt to demonstrate this
+* Poor guy has his laptop crash during his presentation and has to go off script
+* found that Angular sped up the development of his app
+* _Practicing TDD in JS forces you to write testable (read: smaller, more modular) code_
