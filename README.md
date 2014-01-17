@@ -114,7 +114,7 @@ Very useful if the response data is in a stupid format and the server is outside
 
 # Going Postal with Promises
 
-(Christian Lilley)[christianlilley.com]
+[Christian Lilley](christianlilley.com)
 
 * Promises are about uncertainty caused by async
 * Helps us to avoid callback Hell / pyramid of doom
