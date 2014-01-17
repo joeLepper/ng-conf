@@ -173,3 +173,28 @@ $Q.all([a, b, c])
 * the attrs object of the directive definition object allows us to pass attrs, interpolated in the parent environment which can be interpolated by the directive using `$eval`
 * compile and link are very rarely used, but could be used for some sort of lazy-load for perf improvement
 * lazy-loading directive saved a lot of pain from page load time - adds DOM and then destroys itself
+
+# Typescript and Angular
+
+* typescript allows you to have static typing in Javascript
+* install the typescript compiler via NPM
+* like a compiled language, the compiler gives you some error-checking support so you don't have to debug at runtime
+* Going to work with ES6 as the standards land
+* ALlows us to think about data models more clearly
+* build a data type or interface
+* Means that we can write more functionally and reason clearly aobut inputs and outputs
+* Need to include a "definition file" to work with Angular github.com/definitelyTyped
+
+# Firebase and Angular
+
+* Proposal: that Angular is the pinnacle of web dev (kind of silly)
+* And that firebase is the pinnacle of PAAS
+* "Realtime Application Platform"
+* An API to store and sync data to subscribed clients in real time
+* simple login service to auth users (generally through Facebook or Twitter, but also through email/pass)
+* flexible security system for data (declarative security rules)
+* I wonder if this works via sockets or long-polling
+* announces Firebase hosting beta: firebaseapp.com
+* Available for free right now
+* A lot like Heroku, wrapper around git
+* uses firebase CLI
