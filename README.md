@@ -353,7 +353,7 @@ Ari Lerner
 ## serving the HTML
 * You can embed HTML in the Arduino
 * read / send from SD card
-* load from remote server (<script> tag - mostly a scout file)
+* load from remote server ( script tag - mostly a scout file)
 
 ## using Angular
 * The Arduino is not something that we want to serve a lot of stuff from, so it sends over a scout file that writes a bunch of script files for all of our dependencies at run time
