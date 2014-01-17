@@ -244,3 +244,31 @@ d()
 * zone.js lets us to log this sort of stack trace to the server
 * seems like a useful tool
 * only seems to work on IE10 and Chrome32
+
+# AngularJS and Browserify
+
+* Browserify allows node-style requires
+* commonJS is synchronous, but browserify fixes that for us
+* We can give Browserify an entry file and walk the require tree, it then bundles it into a single file
+* supports source maps
+
+## why browserify?
+
+* the syntax is simple
+* allows you to use npm modules in the browser
+* include Node's eventEmitter if you want
+* quick build step so you minimize env differences
+
+## Transforms
+
+* deAMDify, debowerify, coffeeify
+* hbsfy: precompiles handlebars templates for you
+* es6ify: transpiles es6 modules to ES5 for you
+
+## Angular Implications
+
+* Efficient way to write client-side code, regardless of framework
+* Gives you access to a package.json that lets you install from git via npm
+* You could write a module that is pure javascript (say a directive definition) and then just pass that in as a require
+* still strikes me as a little awkward
+* I might like requreJS better
