@@ -343,3 +343,25 @@ Daniel Zen @zendigital
 * Employ `$scope.$on('$destroy')` to kuill unnecessary callbacks
 * handle CSS transitions that are GPU assisted
 * __AUTOMATE YOUR WORKFLOW__
+
+# Angular onthe Arduino
+Ari Lerner
+
+* tinyhttpserver lets us build a web server on the Arduino, easier than writing one in C
+* Connecting to the net from an Arduino via ethernet shield or wifi shield
+
+## serving the HTML
+* You can embed HTML in the Arduino
+* read / send from SD card
+* load from remote server (<script> tag - mostly a scout file)
+
+## using Angular
+* The Arduino is not something that we want to serve a lot of stuff from, so it sends over a scout file that writes a bunch of script files for all of our dependencies at run time
+
+* expose the local IP to the browser to the page
+* wrap that URL in a service
+* then we can get the pin's status
+* replace JSON with a DSL to make it easier to communicate with the Arduino (which is typed and bad at JSON)
+* Just need to iterate over every character in a string, where each index in the string is a different argument
+* using D3 for the interface
+* author of ng-book, D3 on AngularJS (co-author), Riding Rails with AngularJS
