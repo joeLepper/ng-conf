@@ -198,3 +198,49 @@ $Q.all([a, b, c])
 * Available for free right now
 * A lot like Heroku, wrapper around git
 * uses firebase CLI
+
+# Directives that Scale
+
+* Lessons learned from building Kendo UI
+* Declarative initialization
+* If you have to write one directive for every widget in a massive app you'll have a hrd time
+* I actually find this talk somewhat less than useful (not as advertised)
+
+## What if Our Directives Could Build Themselves?
+
+* Widgets share a common API (value and change)
+* Don't build directives (just build one directive that builds other directives)
+* iterate through the namespace and build the directives that are present on the kendo namespace
+* iterate through each widget in the namespace and create a k-attribute
+* Use Angular responsibly
+
+# Angular and Dart
+
+* scalable web app engineering
+* Google is using Dart
+* Dart is a language and ecosystem trying to solve the problem of large webapps
+
+# [Zone.js](https://github.com/btford/zone.js/tree/master)
+@briantford
+
+
+* zones are like domains in node
+* Dart has zones
+* zone.js is a port of Dart's zones to JS
+* Like open-heart surgery on the web browser
+* A zone is an extension context
+
+Consider this:
+```
+a()
+setTimeout(b, 0)
+setTimeout(c, 0)
+d()
+```
+* zones are like a meta-monkey patch
+* helps us to compose behaviors
+* zones can be useful for debugging, testing and mocking, profiling...
+* a stack trace is only so useful, natively, since it goes back to the place that the async call originated, from the queue, not what it was caused by
+* zone.js lets us to log this sort of stack trace to the server
+* seems like a useful tool
+* only seems to work on IE10 and Chrome32
