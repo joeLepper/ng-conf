@@ -304,3 +304,42 @@ d()
 * then use require()
 * let angular inject instances of the contructors
 * use require to inject references to classes or modules
+
+# AngularJS and Phonegap
+Daniel Zen @zendigital
+
+* Phonegap as the glue between web, iOS, and Android
+* cons: ANgular wants to own the DOM, small user base, still maturing
+* phonegap enables access to native device features
+* embeds HTML5 code inside a WebView
+* Phonegap lets you use whatever web frameworks you want to use it
+* requires: npm, Android SDK, xcode
+* Makes it possible to debug in multiple environments on one device (your computer)
+
+## Phonegap gotchas:
+* web apps are slower than natives, use CSS animations
+* work around 30ms delay on click (touch) waiting to see if double-tap
+* pre-load / cache content when possibls
+
+* ngTouch module provides touch events (not ready for prime time) use fastclick in the meantime
+* angular-mobile-nav gives you $navigate
+* angular-gestures based on hammer.js
+* angular-scrolly
+* angular-jqm
+* angular-phonegap-accelerometer
+* angular-phonegap-ready
+* angular-carousel
+* angular-snap
+* ionic framework: "bootstrap" for phonegap - has Angular baked in
+
+## Tips & Tricks
+* debug in Safari and Chrome as much as possible
+* Prevent page zooming
+
+## Optimizations
+* prevent HTML calls
+* preload ng-templates
+* bindonce to avoid unnecessary 2-way bindings
+* Employ `$scope.$on('$destroy')` to kuill unnecessary callbacks
+* handle CSS transitions that are GPU assisted
+* __AUTOMATE YOUR WORKFLOW__
