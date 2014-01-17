@@ -272,3 +272,35 @@ d()
 * You could write a module that is pure javascript (say a directive definition) and then just pass that in as a require
 * still strikes me as a little awkward
 * I might like requreJS better
+
+# Angular and RequireJS
+
+* AngularJS injects _instances_
+* RequireJS injects _classes_ or _references_
+* some ways to manage JS dependencies: Build one HUGE JS file, or manages deps via script tags (which is hard because of load order)
+* RequireJS is a package dependency manager
+
+## Fast-dive into RequireJS
+
+### dependencies
+* load deps
+* contruction deps
+* runtime deps
+* AngularJS module deps (special to Angular)
+
+### features
+* lazy-loader!
+
+### APIs
+* define() - allows us to define callbacks that will be fired after our definitions are ready, a way to build dependency trees to be acted upon later
+* require() - nothing triggers until require is called, the require cascades through the dependencies and then callsback to start running our app
+* config()
+
+## How do we do thie with Angular?
+
+* use define() around your modules
+* use define() around your code
+* setup your config()
+* then use require()
+* let angular inject instances of the contructors
+* use require to inject references to classes or modules
