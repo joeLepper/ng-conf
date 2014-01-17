@@ -76,6 +76,7 @@ Google Doubleclick team
 * can do inheritance via Angular by `$injector.invoke()`
 * mixins: `angular.extend()` use sparingly to add a specific behavior to a controller, very tightly coupled to their controllers, possible naming collisions
 * composition with JS object: use with simple objects and when performance is critical, but cannot use DI with this method
+
 ```
 var sorter = function(){//methods}
 
@@ -83,7 +84,7 @@ function myCtrl($scope){
   $scope.sorter = new sorter()
 }
 ```
-__preferred methods__
+### preferred methods
 * services: common functionality that needs to be shared, fully DI and testable
 * composition with "helper controllers": like a regular object, but invoked with `$controller`: use when need to access other Angular-provided objects, allows for __multiple instances__
 
