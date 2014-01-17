@@ -393,3 +393,33 @@ Ari Lerner
 * formalize the contract between Angular and Protractor
 * Migration away from Scenario Runner
 * Improve the elementExplorer to better make e2e testing pleasurable
+
+# Using ngModelController to Build Sexy UI Components
+
+## Why ngModel
+* core to great UI componenets
+* it's the thing that's responsible for 2-way binding
+* utilized for porting jQuery components
+* allows you to create declarative components
+
+## Accessing ngModelController
+* require it in the directive definition objet, it'll come in as the fourth arg to the link function
+
+## What's it do?
+
+### view -> model
+* interacts with ngForm for dirty, pristine, et al
+* transforms input to model representation
+* alerts listeners
+
+## What doesn't it do?
+* listen for user input
+* update the view
+* interact with the DOM
+
+## properties of ngModelControler
+* pareser
+* formatters
+* viewChangeListeners
+* $dirty
+* $pristine
