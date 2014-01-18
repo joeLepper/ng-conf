@@ -440,3 +440,66 @@ Silvano Luciani
 * Poor guy has his laptop crash during his presentation and has to go off script
 * found that Angular sped up the development of his app
 * _Practicing TDD in JS forces you to write testable (read: smaller, more modular) code_
+
+# Optimizing a Large AngularJS Application
+
+## Problems
+* Anything that could affect a normal JS app
+* inefficient directives
+
+### What does slow mean
+* $digest cycle > 25ms
+* Click handler > 100ms
+* Page load > 1s
+
+#### Optimizing Directives
+* Try to use compile to optimize your directive, it's called once, whereas a link is called N times
+* try to do as much as possible in the compile, or the factory
+* transclusion allows directives to $digest on their own
+* $digest and $apply, you can use $digest to just check one thing instead of kicking off a $digest on a $scope and a bunch of other nonsense
+
+#### $watch
+* $watch expressions get called a lot of times, make sure they're fast
+* avoid deep comparisons because they're pretty slow
+
+#### $watchCollection
+* new in 1.2
+* pseudo-deep comparison
+
+#### $eval, $parse, $interpolate
+* better to call $parse and save the function it returns, rather than $eval or $interpolate
+* $interpolate is particularly slow
+
+
+## FOR EXAMPLE
+* use a compile step to save the result of a $parse
+* and switch from a deep watch to $watchCollection
+
+#### $watch only what's needed
+* strip out unneeded data, perhaps via a map that pulls out only what you want to pay attention to
+* also, contrary to our last point, $watch before transforming, not after
+* so watch the input, not what the input's tranformations output
+
+#### ng-repeat Track by Index
+`<div ng-repeat="foo in foos" track by $index>`
+* by default creates a DOM node for each item and destroys that node when the item is removed.
+* tracking by $index reuses the DOM nodes
+
+#### ng-if vs ng-show
+* ng-if doesn't use CSS and will in the end create fewer bindings and nodes and elements on link
+
+#### Not a best practice: $$postDigest
+* private to Angular
+* fires a callback at the end of the current $digest
+* Great for updating the DOM after dirty-checking
+
+#### Avoid dirty checking if you have to
+* in 1.3 we'll have bindOnce, use that
+* but you can also use a fast-bind-on-notify (basically publish an event that the binding listens for, rather than changing on every change)
+
+## Diagnosing Performance
+* Batarang
+* `performance.now()`
+* angular.copy vs. angular.equals: diagnosing these involves diving into angular itself
+
+# Thanks for reading!
