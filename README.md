@@ -27,7 +27,7 @@ ES6: Classes and modules, but no annotations
 * Angular 2.0 will allow you to write in ES6 syntax and compile to ES5, or just write new ES5 syntax
 * _Polymer_: taking advantage of Shadow DOM, Object.observe, and DOM mutation observer polyfills
 * Angular 2.0 will be built on top of Polymer
-* Debuggability: Zone.js allows for longer stack traces and ignores the $digest / $apply cycles
+* Debuggability: Zone.js allows for longer stack traces and ignores the `$digest` / `$apply` cycles
 * diary.js: console and server logging, the sorts of tooling that we'd like to implement
 
 # Angular in 20ish Minutes
@@ -62,8 +62,8 @@ Google Doubleclick team
 * conditional features are taken care of by the server, add a script tag for each conditional feature
 * Limiting access to controllers is handled by injecting the active user into a conditional controller and letting the controller decide if the user has access
 * remove conditional HTML by custom omit and keep using the response interceptor to strip the HTML out of any response from the server
-* This method won't work with $templateCache - need to ask this guy about that
-* Doubleclick uses $templateCache in the client instead of bundling everything into it on the server on the initial load
+* This method won't work with `$templateCache` - need to ask this guy about that
+* Doubleclick uses `$templateCache` in the client instead of bundling everything into it on the server on the initial load
 
 ## Code Organization Patterns
 
@@ -322,7 +322,7 @@ Daniel Zen @zendigital
 * pre-load / cache content when possibls
 
 * ngTouch module provides touch events (not ready for prime time) use fastclick in the meantime
-* angular-mobile-nav gives you $navigate
+* angular-mobile-nav gives you `$navigate`
 * angular-gestures based on hammer.js
 * angular-scrolly
 * angular-jqm
@@ -421,8 +421,8 @@ Ari Lerner
 * pareser
 * formatters
 * viewChangeListeners
-* $dirty
-* $pristine
+* `$dirty`
+* `$pristine`
 
 For more, check out Dean Sofer, who curates Angular-UI
 
@@ -448,53 +448,53 @@ Silvano Luciani
 * inefficient directives
 
 ### What does slow mean
-* $digest cycle > 25ms
+* `$digest` cycle > 25ms
 * Click handler > 100ms
 * Page load > 1s
 
 #### Optimizing Directives
 * Try to use compile to optimize your directive, it's called once, whereas a link is called N times
 * try to do as much as possible in the compile, or the factory
-* transclusion allows directives to $digest on their own
-* $digest and $apply, you can use $digest to just check one thing instead of kicking off a $digest on a $scope and a bunch of other nonsense
+* transclusion allows directives to `$digest` on their own
+* `$digest` and `$apply`, you can use `$digest` to just check one thing instead of kicking off a `$digest` on a `$scope` and a bunch of other nonsense
 
-#### $watch
-* $watch expressions get called a lot of times, make sure they're fast
+#### `$watch`
+* `$watch` expressions get called a lot of times, make sure they're fast
 * avoid deep comparisons because they're pretty slow
 
-#### $watchCollection
+#### `$watchCollection`
 * new in 1.2
 * pseudo-deep comparison
 
-#### $eval, $parse, $interpolate
-* better to call $parse and save the function it returns, rather than $eval or $interpolate
-* $interpolate is particularly slow
+#### `$eval`, `$parse`, `$interpolate`
+* better to call `$parse` and save the function it returns, rather than `$eval` or `$interpolate`
+* `$interpolate` is particularly slow
 
 
 ## FOR EXAMPLE
-* use a compile step to save the result of a $parse
-* and switch from a deep watch to $watchCollection
+* use a compile step to save the result of a `$parse`
+* and switch from a deep watch to `$watchCollection`
 
-#### $watch only what's needed
+#### `$watch` only what's needed
 * strip out unneeded data, perhaps via a map that pulls out only what you want to pay attention to
-* also, contrary to our last point, $watch before transforming, not after
+* also, contrary to our last point, `$watch` before transforming, not after
 * so watch the input, not what the input's tranformations output
 
 #### ng-repeat Track by Index
 `<div ng-repeat="foo in foos" track by $index>`
 * by default creates a DOM node for each item and destroys that node when the item is removed.
-* tracking by $index reuses the DOM nodes
+* tracking by `$index` reuses the DOM nodes
 
-#### ng-if vs ng-show
-* ng-if doesn't use CSS and will in the end create fewer bindings and nodes and elements on link
+#### `ng-if` vs `ng-show`
+* `ng-if` doesn't use CSS and will in the end create fewer bindings and nodes and elements on link
 
-#### Not a best practice: $$postDigest
+#### Not a best practice: `$$postDigest`
 * private to Angular
-* fires a callback at the end of the current $digest
+* fires a callback at the end of the current `$digest`
 * Great for updating the DOM after dirty-checking
 
 #### Avoid dirty checking if you have to
-* in 1.3 we'll have bindOnce, use that
+* in 1.3 we'll have `bindOnce`, use that
 * but you can also use a fast-bind-on-notify (basically publish an event that the binding listens for, rather than changing on every change)
 
 ## Diagnosing Performance
