@@ -284,7 +284,7 @@ d()
 
 ### dependencies
 * load deps
-* contruction deps
+* construction deps
 * runtime deps
 * AngularJS module deps (special to Angular)
 
